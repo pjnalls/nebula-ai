@@ -1,16 +1,22 @@
+import { useState } from 'react';
 import { ScreenContent } from 'components/ScreenContent';
 import { StatusBar } from 'expo-status-bar';
 
-import Navbar from 'components/Navbar.tsx';
+import NavbarHeader from 'components/NavbarHeader';
+import NavbarSideDrawer from 'components/NavbarSideDrawer';
 
 import './global.css';
 
 export default function App() {
+  const [isOpen, setIsOpen] = useState(false);
+
   return (
     <>
-      <Navbar />
-      <ScreenContent title="Home" path="App.tsx"></ScreenContent>
-      <StatusBar style="auto" />
+      <ScreenContent title="Home" path="App.tsx">
+        <NavbarHeader isOpen={isOpen} setIsOpen={setIsOpen} />
+        <NavbarSideDrawer isOpen={isOpen} setIsOpen={setIsOpen} />
+      </ScreenContent>
+      <StatusBar style="light" backgroundColor="black" />
     </>
   );
 }

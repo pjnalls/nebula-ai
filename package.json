@@ -1,5 +1,5 @@
 {
-  "name": "ai-chat-bot",
+  "name": "nebula-ai",
   "version": "1.0.0",
   "scripts": {
     "android": "expo start --android",
