@@ -7,8 +7,8 @@ module.exports = {
     extend: {
       colors: {
         nebula: {
-          900: '#0f0d11',
-          950: '#0a080d',
+          900: '#131016',
+          950: '#100d12',
         },
       },
     },

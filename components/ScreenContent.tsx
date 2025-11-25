@@ -10,5 +10,5 @@ type ScreenContentProps = {
 };
 
 export const ScreenContent = ({ title, path, children }: ScreenContentProps) => {
-  return <View className="flex-1 bg-zinc-950">{children}</View>;
+  return <View className="flex-1 bg-nebula-950">{children}</View>;
 };

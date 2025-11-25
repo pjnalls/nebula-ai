@@ -13,8 +13,8 @@ export default function App() {
   return (
     <>
       <ScreenContent title="Home" path="App.tsx">
-        <NavbarHeader isOpen={isOpen} setIsOpen={setIsOpen} />
-        <NavbarSideDrawer isOpen={isOpen} setIsOpen={setIsOpen} />
+          <NavbarHeader isOpen={isOpen} setIsOpen={setIsOpen} />
+          <NavbarSideDrawer isOpen={isOpen} setIsOpen={setIsOpen} />
       </ScreenContent>
       <StatusBar style="light" backgroundColor="black" />
     </>
