@@ -1,12 +1,13 @@
 import { FC } from 'react';
 import { Image, TouchableOpacity, Text, View } from 'react-native';
+import Animated, { withTiming, Easing } from 'react-native-reanimated';
 import { NavbarProps } from 'types';
 import { cn } from 'utils/cn';
 
 export default function NavbarHeader({ isOpen, setIsOpen }: NavbarProps) {
   const Hamburger: FC<NavbarProps> = () => {
     const handleOnPress = () => {
-      if (setIsOpen) setIsOpen(true);
+      setIsOpen(true);
     };
     return (
       <TouchableOpacity
@@ -21,7 +22,7 @@ export default function NavbarHeader({ isOpen, setIsOpen }: NavbarProps) {
   };
 
   return (
-    <View
+    <Animated.View
       className={cn(
         'absolute z-10 w-full flex-row',
         'items-center justify-between border-b-[1px] border-zinc-800',
@@ -36,6 +37,6 @@ export default function NavbarHeader({ isOpen, setIsOpen }: NavbarProps) {
         source={require('../assets/icon.png')}
         alt="A purple and blue glowing electronic orb"
       />
-    </View>
+    </Animated.View>
   );
 }
