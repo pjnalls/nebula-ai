@@ -5,3 +5,9 @@ export type NavbarProps = {
   isOpen?: boolean;
   setIsOpen: Dispatch<SetStateAction<boolean>>;
 };
+
+export type NavbarSideDrawerChatProps = {
+  id: string;
+  title: string;
+  createdAt: Date;
+};
