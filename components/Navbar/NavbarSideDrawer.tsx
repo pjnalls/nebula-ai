@@ -75,8 +75,8 @@ export default function NavbarSideDrawer({ isOpen, setIsOpen }: NavbarProps) {
       {isOpen && (
         <Animated.View
           className={cn('absolute z-20 h-full w-full')}
-          entering={FadeIn.duration(500).easing(Easing.ease)}
-          exiting={FadeOut.duration(500).easing(Easing.ease)}>
+          entering={FadeIn.duration(300).easing(Easing.ease)}
+          exiting={FadeOut.duration(300).easing(Easing.ease)}>
           <TouchableOpacity
             onPress={handleOnPress}
             className={cn('absolute h-full w-full bg-black/50')}
@@ -92,14 +92,14 @@ export default function NavbarSideDrawer({ isOpen, setIsOpen }: NavbarProps) {
             'absolute z-30 h-full w-3/4 border-r-[1px]',
             'justify-between border-zinc-800 bg-nebula-900 pb-8 pt-16'
           )}
-          entering={SlideInLeft.duration(500).easing(Easing.ease)}
-          exiting={SlideOutLeft.duration(500).easing(Easing.ease)}>
+          entering={SlideInLeft.duration(300).easing(Easing.ease)}
+          exiting={SlideOutLeft.duration(300).easing(Easing.ease)}>
           <View>
             <View className="flex-row items-center justify-between p-4">
               <View className="flex-row items-center justify-center gap-2">
                 <Image
                   className="h-14 w-14 rounded-full border-[1px] border-purple-500"
-                  source={require('../assets/icon.png')}
+                  source={require('@/assets/icon.png')}
                   alt="A purple and blue glowing electronic orb"
                 />
                 <Text className="text-3xl font-semibold text-white">Nebula</Text>
@@ -123,10 +123,10 @@ export default function NavbarSideDrawer({ isOpen, setIsOpen }: NavbarProps) {
               ))}
             </View>
           </View>
-          <View className="flex-row gap-4 px-8 py-4">
+          <TouchableOpacity className="flex-row gap-4 px-8 py-4">
             <MaterialCommunityIcons name="cog-outline" size={24} color="white" />
             <Text className="text-lg text-white">Settings</Text>
-          </View>
+          </TouchableOpacity>
         </Animated.View>
       )}
     </>

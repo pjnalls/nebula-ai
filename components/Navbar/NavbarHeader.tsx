@@ -34,7 +34,7 @@ export default function NavbarHeader({ isOpen, setIsOpen }: NavbarProps) {
       </View>
       <Image
         className="h-12 w-12 rounded-full border-[1px] border-zinc-700"
-        source={require('../assets/icon.png')}
+        source={require('@/assets/icon.png')}
         alt="A purple and blue glowing electronic orb"
       />
     </Animated.View>
