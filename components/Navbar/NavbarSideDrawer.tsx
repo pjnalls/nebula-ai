@@ -74,7 +74,7 @@ export default function NavbarSideDrawer({ isOpen, setIsOpen }: NavbarProps) {
     <>
       {isOpen && (
         <Animated.View
-          className={cn('absolute z-20 h-full w-full')}
+          className={cn('absolute z-30 h-[100vh] w-full')}
           entering={FadeIn.duration(300).easing(Easing.ease)}
           exiting={FadeOut.duration(300).easing(Easing.ease)}>
           <TouchableOpacity
@@ -89,7 +89,7 @@ export default function NavbarSideDrawer({ isOpen, setIsOpen }: NavbarProps) {
       {isOpen && (
         <Animated.View
           className={cn(
-            'absolute z-30 h-full w-3/4 border-r-[1px]',
+            'absolute z-50 h-[100vh] w-3/4 border-r-[1px]',
             'justify-between border-zinc-800 bg-nebula-900 pb-8 pt-16'
           )}
           entering={SlideInLeft.duration(300).easing(Easing.ease)}

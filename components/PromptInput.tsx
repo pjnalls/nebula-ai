@@ -1,36 +1,35 @@
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { Text, TextInput, View } from 'react-native';
+import { Text, TextInput, useWindowDimensions, View } from 'react-native';
 import { cn } from 'utils/cn';
 
 export default function PromptInput() {
+  const { width } = useWindowDimensions();
+
   return (
-    <View className="absolute bottom-0 z-20 my-8 w-full justify-center px-4">
-      <View
-        className={cn(
-          'absolute bottom-0 my-8 w-5/6 border-[1px]',
-          'border-b-zinc-800 border-t-zinc-800 bg-black py-[33.5px]',
-          'left-8'
-        )}></View>
-      <View className="flex-row justify-between">
+    <View className="z-00 absolute bottom-0 my-8 w-full justify-center px-4">
+      <View className="flex-row">
         <View
           className={cn(
             'my-3 border-[1px] border-t-zinc-800 bg-black p-6',
-            ' rounded-l-3xl border-b-zinc-800 border-l-zinc-800'
+            ' w-[68px] rounded-l-full border-b-zinc-800 border-l-zinc-800'
           )}>
           <MaterialCommunityIcons size={24} name="image-outline" color="white" />
         </View>
         <TextInput
           placeholder="Message Nebula..."
           placeholderTextColor="#606060"
+          cursorColor="#a855f7"
+          // width = width - mic & msg btns - margins - attms btn
+          style={{ width: width - 124 - 16 * 2 - 68 }}
           className={cn(
             ' my-3 border-[1px] border-b-zinc-800',
-            'border-t-zinc-800 bg-black p-6 text-xl '
+            'border-t-zinc-800 bg-black p-6 pl-0 text-xl text-white'
           )}
         />
         <View
           className={cn(
             'justify-center border-[1px] border-t-zinc-800 bg-black py-2',
-            'my-3 rounded-r-3xl border-b-zinc-800 border-r-zinc-800 px-3'
+            'my-3 w-[124px] rounded-r-full border-b-zinc-800 border-r-zinc-800 px-4'
           )}>
           <View className="flex-row items-center justify-center gap-8">
             <MaterialCommunityIcons size={24} name="microphone" color="white" />

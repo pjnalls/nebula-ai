@@ -11,3 +11,11 @@ export type NavbarSideDrawerChatProps = {
   title: string;
   createdAt: Date;
 };
+
+export type MessageProps = {
+  id: string;
+  title: string;
+  isUser: boolean;
+  message: string;
+  dateSent: Date;
+};
