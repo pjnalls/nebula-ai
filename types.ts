@@ -14,8 +14,8 @@ export type NavbarSideDrawerChatProps = {
 
 export type MessageProps = {
   id: string;
-  title: string;
   isUser: boolean;
   message: string;
   dateSent: Date;
+  profilePicUrl?: string;
 };

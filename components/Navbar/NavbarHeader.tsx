@@ -24,9 +24,9 @@ export default function NavbarHeader({ isOpen, setIsOpen }: NavbarProps) {
   return (
     <Animated.View
       className={cn(
-        'absolute z-10 w-full flex-row',
+        'relative z-10 w-full flex-row',
         'items-center justify-between border-b-[1px] border-zinc-800',
-        'bg-black px-2 pb-8 pt-16'
+        'h-36 bg-black px-2 pt-16'
       )}>
       <View className="flex-row items-center justify-center gap-8">
         <Hamburger setIsOpen={setIsOpen} />
