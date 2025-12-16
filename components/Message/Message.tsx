@@ -1,11 +1,33 @@
+import { transform } from '@babel/core';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
+import { useEffect } from 'react';
 import { Image, Text, View } from 'react-native';
+import Animated, { useSharedValue, useAnimatedStyle, withTiming } from 'react-native-reanimated';
 import { type MessageProps } from 'types';
 import { cn } from 'utils/cn';
 
-export default function Message({ isUser, message, dateSent, profilePicUrl }: MessageProps) {
+export default function Message({ isUser, message, dateSent }: MessageProps) {
+  const opacity = useSharedValue(0);
+  const scale = useSharedValue(0.9);
+  const translateY = useSharedValue(64);
+
+  const animatedStyles = useAnimatedStyle(() => {
+    return {
+      opacity: opacity.value,
+      transform: [{ scale: scale.value }, { translateY: translateY.value }],
+    };
+  });
+
+  useEffect(() => {
+    opacity.value = withTiming(1, { duration: 300 });
+    scale.value = withTiming(1, { duration: 300 });
+    translateY.value = withTiming(0, { duration: 300 });
+  }, []);
+
   return isUser ? (
-    <View className="relative my-6 w-full flex-row justify-end gap-4 p-4">
+    <Animated.View
+      style={[animatedStyles]}
+      className="relative my-6 w-full flex-row justify-end gap-4 p-4">
       <View className="flex-col gap-2">
         <View className="rounded-2xl rounded-tr-none border-[1px] border-purple-400 bg-purple-600 p-6">
           <Text className="text-lg text-white">{message}</Text>
@@ -25,9 +47,9 @@ export default function Message({ isUser, message, dateSent, profilePicUrl }: Me
         )}>
         <MaterialCommunityIcons size={36} color="white" name="account" />
       </View>
-    </View>
+    </Animated.View>
   ) : (
-    <View className="relative w-full flex-row gap-4 px-5">
+    <Animated.View style={[animatedStyles]} className="relative w-full flex-row gap-4 px-5">
       <Image
         className="h-12 w-12 rounded-full border-[1px] border-zinc-700"
         source={require('@/assets/icon.png')}
@@ -45,6 +67,6 @@ export default function Message({ isUser, message, dateSent, profilePicUrl }: Me
           })}
         </Text>
       </View>
-    </View>
+    </Animated.View>
   );
 }

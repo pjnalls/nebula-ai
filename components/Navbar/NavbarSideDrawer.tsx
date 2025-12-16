@@ -71,8 +71,8 @@ export default function NavbarSideDrawer({ isOpen, setIsOpen }: NavbarProps) {
     );
   }
   return (
-    <>
-      {isOpen && (
+    isOpen && (
+      <>
         <Animated.View
           className={cn('absolute z-30 h-[100vh] w-full')}
           entering={FadeIn.duration(300).easing(Easing.ease)}
@@ -84,9 +84,6 @@ export default function NavbarSideDrawer({ isOpen, setIsOpen }: NavbarProps) {
             <BlurView intensity={44} tint="dark" className="h-full w-full bg-black/80" />
           </TouchableOpacity>
         </Animated.View>
-      )}
-
-      {isOpen && (
         <Animated.View
           className={cn(
             'absolute z-50 h-[100vh] w-3/4 border-r-[1px]',
@@ -128,7 +125,7 @@ export default function NavbarSideDrawer({ isOpen, setIsOpen }: NavbarProps) {
             <Text className="text-lg text-white">Settings</Text>
           </TouchableOpacity>
         </Animated.View>
-      )}
-    </>
+      </>
+    )
   );
 }

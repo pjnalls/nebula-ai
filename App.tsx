@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { ScreenContent } from 'components/ScreenContent';
 import { StatusBar } from 'expo-status-bar';
 
@@ -12,16 +12,23 @@ import './global.css';
 
 export default function App() {
   const [promptInput, setPromptInput] = useState('');
-  const [messages, setMessages] = useState<MessageProps[]>([
-    {
-      id: '1',
-      isUser: false,
-      message:
-        'Hello. I am Nebula. How can I assist you with your creative or technical tasks today?',
-      dateSent: new Date(2025, 12, 12, 10, 42),
-    },
-  ]);
+  const [messages, setMessages] = useState<MessageProps[]>([]);
   const [aiResponding, setAiResponding] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => {
+      setMessages((messages) => [
+        ...messages,
+        {
+          id: '1',
+          isUser: false,
+          message:
+            'Hello. I am Nebula. How can I assist you with your creative or technical tasks today?',
+          dateSent: new Date(2025, 12, 12, 10, 42),
+        },
+      ]);
+    }, 300);
+  }, []);
 
   return (
     <>
