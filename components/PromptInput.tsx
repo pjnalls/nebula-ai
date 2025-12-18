@@ -1,21 +1,31 @@
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { Dispatch, SetStateAction } from 'react';
-import { Text, TextInput, TouchableOpacity, useWindowDimensions, View } from 'react-native';
+import { Dispatch, RefObject, SetStateAction } from 'react';
+import {
+  FlatList,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  useWindowDimensions,
+  View,
+} from 'react-native';
 import { type MessageProps } from 'types';
 import { cn } from 'utils/cn';
 
 export default function PromptInput({
+  messages,
   promptInput,
   setAiResponding,
   setPromptInput,
   setMessages,
 }: {
+  messages: MessageProps[];
   promptInput: string;
   setAiResponding: Dispatch<SetStateAction<boolean>>;
   setPromptInput: Dispatch<SetStateAction<string>>;
   setMessages: Dispatch<SetStateAction<MessageProps[]>>;
 }) {
   const { width } = useWindowDimensions();
+
   const handleOnChange = (text: string) => {
     setPromptInput(text);
   };

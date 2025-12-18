@@ -1,5 +1,6 @@
+import { Image } from 'expo-image';
 import { FC } from 'react';
-import { Image, TouchableOpacity, Text, View } from 'react-native';
+import { TouchableOpacity, Text, View } from 'react-native';
 import Animated, { withTiming, Easing } from 'react-native-reanimated';
 import { NavbarProps } from 'types';
 import { cn } from 'utils/cn';
@@ -33,7 +34,7 @@ export default function NavbarHeader({ isOpen, setIsOpen }: NavbarProps) {
         <Text className="text-2xl font-semibold text-white">Nebula AI</Text>
       </View>
       <Image
-        className="h-12 w-12 rounded-full border-[1px] border-zinc-700"
+        style={{ width: 48, height: 48, borderRadius: 100, borderWidth: 1, borderColor: '#3f3f46' }}
         source={require('@/assets/icon.png')}
         alt="A purple and blue glowing electronic orb"
       />

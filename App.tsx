@@ -1,4 +1,5 @@
-import { useEffect, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
+import { FlatList } from 'react-native';
 import { ScreenContent } from 'components/ScreenContent';
 import { StatusBar } from 'expo-status-bar';
 
@@ -37,10 +38,11 @@ export default function App() {
         <MessageList aiResponding={aiResponding} messages={messages} />
       </ScreenContent>
       <PromptInput
+        messages={messages}
         promptInput={promptInput}
         setAiResponding={setAiResponding}
-        setPromptInput={setPromptInput}
         setMessages={setMessages}
+        setPromptInput={setPromptInput}
       />
       <StatusBar style="light" backgroundColor="black" />
     </>

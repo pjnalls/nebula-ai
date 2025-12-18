@@ -1,6 +1,7 @@
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { BlurView } from 'expo-blur';
-import { Image, Text, TouchableOpacity, View } from 'react-native';
+import { Image } from 'expo-image';
+import { Text, TouchableOpacity, View } from 'react-native';
 import Animated, {
   SlideInLeft,
   SlideOutLeft,
@@ -95,7 +96,13 @@ export default function NavbarSideDrawer({ isOpen, setIsOpen }: NavbarProps) {
             <View className="flex-row items-center justify-between p-4">
               <View className="flex-row items-center justify-center gap-2">
                 <Image
-                  className="h-14 w-14 rounded-full border-[1px] border-purple-500"
+                  style={{
+                    width: 56,
+                    height: 56,
+                    borderRadius: 100,
+                    borderWidth: 1,
+                    borderColor: '#a855f7',
+                  }}
                   source={require('@/assets/icon.png')}
                   alt="A purple and blue glowing electronic orb"
                 />

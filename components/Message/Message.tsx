@@ -1,7 +1,7 @@
-import { transform } from '@babel/core';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useEffect } from 'react';
-import { Image, Text, View } from 'react-native';
+import { Text, View } from 'react-native';
+import { Image } from 'expo-image';
 import Animated, { useSharedValue, useAnimatedStyle, withTiming } from 'react-native-reanimated';
 import { type MessageProps } from 'types';
 import { cn } from 'utils/cn';
@@ -27,9 +27,9 @@ export default function Message({ isUser, message, dateSent }: MessageProps) {
   return isUser ? (
     <Animated.View
       style={[animatedStyles]}
-      className="relative my-6 w-full flex-row justify-end gap-4 p-4">
+      className="relative my-2 w-full flex-row justify-end gap-4 p-4">
       <View className="flex-col gap-2">
-        <View className="rounded-2xl rounded-tr-none border-[1px] border-purple-400 bg-purple-600 p-6">
+        <View className="rounded-2xl rounded-tr-none border-[1px] border-purple-400 bg-purple-600 p-3">
           <Text className="text-lg text-white">{message}</Text>
         </View>
         <Text className="w-full text-right text-zinc-400">
@@ -49,14 +49,14 @@ export default function Message({ isUser, message, dateSent }: MessageProps) {
       </View>
     </Animated.View>
   ) : (
-    <Animated.View style={[animatedStyles]} className="relative w-full flex-row gap-4 px-5">
+    <Animated.View style={[animatedStyles]} className="relative my-2 w-full flex-row gap-4 px-5">
       <Image
-        className="h-12 w-12 rounded-full border-[1px] border-zinc-700"
+        style={{ width: 48, height: 48, borderRadius: 100, borderWidth: 1, borderColor: '#3f3f46' }}
         source={require('@/assets/icon.png')}
         alt="A purple and blue glowing electronic orb"
       />
       <View className="flex-col gap-2">
-        <View className="w-[90%] rounded-2xl rounded-tl-none border-[1px] border-zinc-700 bg-zinc-900 p-4">
+        <View className="w-[90%] rounded-2xl rounded-tl-none border-[1px] border-zinc-700 bg-zinc-900 p-3">
           <Text className="text-lg text-white">{message}</Text>
         </View>
         <Text className="text-zinc-400">
