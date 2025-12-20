@@ -60,7 +60,7 @@ export default function PromptInput({
   };
 
   return (
-    <View className="absolute bottom-0 z-10 w-full justify-center bg-nebula-950 px-4 pb-8">
+    <View className="absolute bottom-0 z-10 w-full justify-center bg-nebula-950 px-6 pb-8">
       <View className="flex-row mx-auto">
         <View
           className={cn(
@@ -75,7 +75,7 @@ export default function PromptInput({
           cursorColor="#a855f7"
           maxLength={640}
           // width = width - mic & msg btns - margins - attms btn
-          style={{ width: width - 124 - 16 * 2 - 68, maxWidth: 580 }}
+          style={{ width: width - 124 - 24 * 2 - 68, maxWidth: 560 }}
           className={cn(
             ' my-3 border-[1px] border-b-zinc-800',
             'border-t-zinc-800 bg-black p-6 sm:pl-6 pl-3 text-xl text-white'

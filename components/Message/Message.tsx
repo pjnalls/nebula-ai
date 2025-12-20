@@ -31,7 +31,7 @@ export default function Message({ isUser, message, dateSent }: MessageProps) {
         style={[{ maxWidth: 768, width: '100%' }]}>
         <View
           className="flex-col gap-2"
-          style={[{ width: 'auto', maxWidth: '80%' }, animatedStyles]}>
+          style={[{ width: 'auto', maxWidth: '80%' }]}>
           <View className="rounded-2xl rounded-tr-none border-[1px] border-purple-400 bg-purple-600 p-3">
             <Text className="text-lg text-white">{message}</Text>
           </View>

@@ -56,3 +56,9 @@ While the project is running, follow the instructions in the terminal like the f
 - Press `i` to run the project in iOS Simulator.
 - Press `a` to run the project on an Android emulator.
 - Press `w` to run the project in the browser.
+
+## ⚠️ Gotchas
+
+### App doesn't start on iOS Simulator.
+
+Sometimes you may need to reset iOS Simulator, run `npm start`, then press `i` to run the project on iOS Simulator.
