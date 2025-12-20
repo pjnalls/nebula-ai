@@ -77,8 +77,8 @@ export default function PromptInput({
           // width = width - mic & msg btns - margins - attms btn
           style={{ width: width - 124 - 24 * 2 - 68, maxWidth: 560 }}
           className={cn(
-            ' my-3 border-[1px] border-b-zinc-800',
-            'border-t-zinc-800 bg-black p-6 sm:pl-6 pl-3 text-xl text-white'
+            ' my-3 border-[1px] border-b-zinc-800 border-r-0 border-l-0',
+            'border-t-zinc-800 bg-black p-6 sm:pl-6 pl-3 sm:text-xl text-lg text-white'
           )}
           onChangeText={handleOnChange}
           value={promptInput}

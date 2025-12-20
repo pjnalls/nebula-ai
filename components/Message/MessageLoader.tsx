@@ -79,28 +79,35 @@ export default function MessageLoader() {
   });
 
   return (
-    <Animated.View style={[cardAnimatedStyles]} className="w-full flex-row gap-4 px-5">
-      <Image
-        style={{ width: 48, height: 48, borderRadius: 100, borderWidth: 1, borderColor: '#3f3f46' }}
-        source={require('@/assets/icon.png')}
-        alt="A purple and blue glowing electronic orb"
-      />
-      <View className="flex-col gap-2">
-        <View className="h-16 w-28 flex-row gap-2 rounded-2xl rounded-tl-none border-[1px] border-zinc-700 bg-zinc-900 p-4 py-2">
-          <Animated.View
-            className="h-5 w-5 rounded-full bg-zinc-400 "
-            style={[dot1AnimatedStyles]}
-          />
-          <Animated.View
-            className="h-5 w-5 rounded-full bg-zinc-400"
-            style={[dot2AnimatedStyles]}
-          />
-          <Animated.View
-            className="h-5 w-5 rounded-full bg-zinc-400"
-            style={[dot3AnimatedStyles]}
-          />
+    <Animated.View style={[cardAnimatedStyles]}>
+      <></>
+      <View className="w-full flex-row gap-4 px-5">
+        <Image
+          style={{
+            width: 48,
+            height: 48,
+            borderRadius: 100,
+            borderWidth: 1,
+            borderColor: '#3f3f46',
+          }}
+          source={require('@/assets/icon.png')}
+          alt="A purple and blue glowing electronic orb"
+        />
+        <View className="flex-col gap-2">
+          <View className="h-16 w-28 flex-row gap-2 rounded-2xl rounded-tl-none border-[1px] border-zinc-700 bg-zinc-900 p-4 py-2">
+            <Animated.View style={[dot1AnimatedStyles]}>
+              <View className="h-5 w-5 rounded-full bg-zinc-400 " />
+            </Animated.View>
+            <Animated.View style={[dot2AnimatedStyles]}>
+              <View className="h-5 w-5 rounded-full bg-zinc-400 " />
+            </Animated.View>
+            <Animated.View style={[dot3AnimatedStyles]}>
+              <View className="h-5 w-5 rounded-full bg-zinc-400 " />
+            </Animated.View>
+          </View>
         </View>
       </View>
+      <View style={{ height: 200 }} />
     </Animated.View>
   );
 }

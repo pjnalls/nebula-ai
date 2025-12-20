@@ -17,15 +17,15 @@ export default function MessageList({
   const flatListRef = useRef<FlatList<MessageProps> | null>(null);
 
   return (
-    <View className="h-full w-[100vw] pb-48">
+    <View className="h-full flex-1 w-[100vw] pb-48">
       <FlatList
         ref={flatListRef}
         scrollEnabled={true}
-        contentContainerStyle={{ paddingTop: 64, paddingBottom: 128 }}
+        contentContainerStyle={{ paddingTop: 64 }}
         data={messages}
         renderItem={renderItem}
         keyExtractor={(item) => item.id}
-        ListFooterComponent={aiResponding ? <MessageLoader /> : null}
+        ListFooterComponent={aiResponding ? <MessageLoader /> : <View style={{ height: 200 }} />}
         onContentSizeChange={() => {
           if (flatListRef.current) {
             flatListRef.current.scrollToEnd({ animated: true });

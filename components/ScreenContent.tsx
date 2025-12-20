@@ -8,5 +8,5 @@ type ScreenContentProps = {
 };
 
 export const ScreenContent = ({ children }: ScreenContentProps) => {
-  return <View className="top-36 z-0 h-[100vh] bg-nebula-950">{children}</View>;
+  return <View className="top-36 z-0 h-[100vh] flex-1 bg-nebula-950">{children}</View>;
 };
