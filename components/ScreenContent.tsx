@@ -1,7 +1,5 @@
 import React from 'react';
-import { Text, View } from 'react-native';
-
-import { EditScreenInfo } from './EditScreenInfo';
+import { View } from 'react-native';
 
 type ScreenContentProps = {
   title: string;
@@ -9,6 +7,6 @@ type ScreenContentProps = {
   children?: React.ReactNode;
 };
 
-export const ScreenContent = ({ title, path, children }: ScreenContentProps) => {
-  return <View className="top-32 z-0 h-[100vh] bg-nebula-950">{children}</View>;
+export const ScreenContent = ({ children }: ScreenContentProps) => {
+  return <View className="top-36 z-0 h-[100vh] bg-nebula-950">{children}</View>;
 };

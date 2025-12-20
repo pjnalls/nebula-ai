@@ -1,5 +1,5 @@
 import { useRef } from 'react';
-import { FlatList, View } from 'react-native';
+import { ActivityIndicator, FlatList, View } from 'react-native';
 
 import { type MessageProps } from 'types';
 
@@ -17,21 +17,25 @@ export default function MessageList({
   const flatListRef = useRef<FlatList<MessageProps> | null>(null);
 
   return (
-    <View className="h-full pb-48">
-      <FlatList
-        ref={flatListRef}
-        scrollEnabled={true}
-        contentContainerStyle={{ paddingTop: 64, paddingBottom: 128 }}
-        data={messages}
-        renderItem={renderItem}
-        keyExtractor={(item) => item.id}
-        ListFooterComponent={aiResponding ? <MessageLoader /> : null}
-        onContentSizeChange={() => {
-          if (flatListRef.current) {
-            flatListRef.current.scrollToEnd({ animated: true });
-          }
-        }}
-      />
+    <View className="h-full w-[100vw] pb-48">
+      {messages.length > 0 ? (
+        <FlatList
+          ref={flatListRef}
+          scrollEnabled={true}
+          contentContainerStyle={{ paddingTop: 64, paddingBottom: 128 }}
+          data={messages}
+          renderItem={renderItem}
+          keyExtractor={(item, index) => item?.id?.toString() || index.toString()}
+          ListFooterComponent={aiResponding ? <MessageLoader /> : null}
+          onContentSizeChange={() => {
+            if (flatListRef.current) {
+              flatListRef.current.scrollToEnd({ animated: true });
+            }
+          }}
+        />
+      ) : (
+        <ActivityIndicator />
+      )}
     </View>
   );
 }

@@ -1,7 +1,6 @@
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { Dispatch, RefObject, SetStateAction } from 'react';
+import { Dispatch, SetStateAction } from 'react';
 import {
-  FlatList,
   Text,
   TextInput,
   TouchableOpacity,
@@ -12,13 +11,11 @@ import { type MessageProps } from 'types';
 import { cn } from 'utils/cn';
 
 export default function PromptInput({
-  messages,
   promptInput,
   setAiResponding,
   setPromptInput,
   setMessages,
 }: {
-  messages: MessageProps[];
   promptInput: string;
   setAiResponding: Dispatch<SetStateAction<boolean>>;
   setPromptInput: Dispatch<SetStateAction<string>>;
@@ -64,11 +61,11 @@ export default function PromptInput({
 
   return (
     <View className="absolute bottom-0 z-10 w-full justify-center bg-nebula-950 px-4 pb-8">
-      <View className="flex-row">
+      <View className="flex-row mx-auto">
         <View
           className={cn(
-            'my-3 border-[1px] border-t-zinc-800 bg-black p-6',
-            ' w-[68px] rounded-l-full border-b-zinc-800 border-l-zinc-800'
+            'my-3 border-[1px] border-t-zinc-800 bg-black p-6 pr-3',
+            ' w-[68px] rounded-l-full border-b-zinc-800 border-l-zinc-800',
           )}>
           <MaterialCommunityIcons size={24} name="image-outline" color="white" />
         </View>
@@ -78,14 +75,13 @@ export default function PromptInput({
           cursorColor="#a855f7"
           maxLength={640}
           // width = width - mic & msg btns - margins - attms btn
-          style={{ width: width - 124 - 16 * 2 - 68 }}
+          style={{ width: width - 124 - 16 * 2 - 68, maxWidth: 580 }}
           className={cn(
             ' my-3 border-[1px] border-b-zinc-800',
-            'border-t-zinc-800 bg-black p-6 pl-0 text-xl text-white'
+            'border-t-zinc-800 bg-black p-6 sm:pl-6 pl-3 text-xl text-white'
           )}
           onChangeText={handleOnChange}
           value={promptInput}
-          defaultValue=""
         />
         <View
           className={cn(

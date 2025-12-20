@@ -25,47 +25,61 @@ export default function Message({ isUser, message, dateSent }: MessageProps) {
   }, []);
 
   return isUser ? (
-    <Animated.View
-      style={[animatedStyles]}
-      className="relative my-2 w-full flex-row justify-end gap-4 p-4">
-      <View className="flex-col gap-2">
-        <View className="rounded-2xl rounded-tr-none border-[1px] border-purple-400 bg-purple-600 p-3">
-          <Text className="text-lg text-white">{message}</Text>
-        </View>
-        <Text className="w-full text-right text-zinc-400">
-          {dateSent.toLocaleTimeString('en-US', {
-            hour: '2-digit',
-            minute: '2-digit',
-            hour12: true,
-          })}
-        </Text>
-      </View>
+    <Animated.View style={[animatedStyles]}>
       <View
-        className={cn(
-          'h-12 w-12 rounded-full bg-zinc-800',
-          'items-center justify-center border-[1px] border-zinc-700'
-        )}>
-        <MaterialCommunityIcons size={36} color="white" name="account" />
+        className="relative mx-auto my-2 flex-row justify-end gap-4 p-4"
+        style={[{ maxWidth: 768, width: '100%' }]}>
+        <View
+          className="flex-col gap-2"
+          style={[{ width: 'auto', maxWidth: '80%' }, animatedStyles]}>
+          <View className="rounded-2xl rounded-tr-none border-[1px] border-purple-400 bg-purple-600 p-3">
+            <Text className="text-lg text-white">{message}</Text>
+          </View>
+          <Text className="w-full text-right text-zinc-400">
+            {dateSent.toLocaleTimeString('en-US', {
+              hour: '2-digit',
+              minute: '2-digit',
+              hour12: true,
+            })}
+          </Text>
+        </View>
+        <View
+          className={cn(
+            'h-12 w-12 rounded-full bg-zinc-800',
+            'items-center justify-center border-[1px] border-zinc-700'
+          )}>
+          <MaterialCommunityIcons size={36} color="white" name="account" />
+        </View>
       </View>
     </Animated.View>
   ) : (
-    <Animated.View style={[animatedStyles]} className="relative my-2 w-full flex-row gap-4 px-5">
-      <Image
-        style={{ width: 48, height: 48, borderRadius: 100, borderWidth: 1, borderColor: '#3f3f46' }}
-        source={require('@/assets/icon.png')}
-        alt="A purple and blue glowing electronic orb"
-      />
-      <View className="flex-col gap-2">
-        <View className="w-[90%] rounded-2xl rounded-tl-none border-[1px] border-zinc-700 bg-zinc-900 p-3">
-          <Text className="text-lg text-white">{message}</Text>
+    <Animated.View style={[animatedStyles]}>
+      <View
+        className="relative mx-auto my-2 flex-row gap-4 px-5"
+        style={[{ maxWidth: 768, width: '100%' }]}>
+        <Image
+          style={{
+            width: 48,
+            height: 48,
+            borderRadius: 100,
+            borderWidth: 1,
+            borderColor: '#3f3f46',
+          }}
+          source={require('@/assets/icon.png')}
+          alt="A purple and blue glowing electronic orb"
+        />
+        <View className="flex-col gap-2" style={[{ width: 'auto', maxWidth: '80%' }]}>
+          <View className="rounded-2xl rounded-tl-none border-[1px] border-zinc-700 bg-zinc-900 p-3">
+            <Text className="text-lg text-white">{message}</Text>
+          </View>
+          <Text className="text-zinc-400">
+            {dateSent.toLocaleTimeString('en-US', {
+              hour: '2-digit',
+              minute: '2-digit',
+              hour12: true,
+            })}
+          </Text>
         </View>
-        <Text className="text-zinc-400">
-          {dateSent.toLocaleTimeString('en-US', {
-            hour: '2-digit',
-            minute: '2-digit',
-            hour12: true,
-          })}
-        </Text>
       </View>
     </Animated.View>
   );

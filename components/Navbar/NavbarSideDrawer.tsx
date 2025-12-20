@@ -1,19 +1,36 @@
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { BlurView } from 'expo-blur';
 import { Image } from 'expo-image';
-import { Text, TouchableOpacity, View } from 'react-native';
-import Animated, {
-  SlideInLeft,
-  SlideOutLeft,
-  Easing,
-  FadeIn,
-  FadeOut,
-} from 'react-native-reanimated';
+import { useEffect } from 'react';
+import { Platform, Text, TouchableOpacity, useWindowDimensions, View } from 'react-native';
+import Animated, { useSharedValue, withTiming, useAnimatedStyle } from 'react-native-reanimated';
 import { NavbarProps, NavbarSideDrawerChatProps } from 'types';
 import { cn } from 'utils/cn';
 
 export default function NavbarSideDrawer({ isOpen, setIsOpen }: NavbarProps) {
-  const handleOnPress = () => setIsOpen(false);
+  const { width } = useWindowDimensions();
+  const opacity = useSharedValue(0);
+  const translateX = useSharedValue(-1 * width);
+
+  const overlayAnimatedStyles = useAnimatedStyle(() => {
+    return {
+      opacity: opacity.value,
+    };
+  });
+  const drawerAnimatedStyles = useAnimatedStyle(() => {
+    return {
+      transform: [{ translateX: translateX.value }],
+    };
+  });
+
+  useEffect(() => {
+    opacity.value = withTiming(isOpen ? 1 : 0, { duration: 300 });
+    translateX.value = withTiming(isOpen ? 0 : -1 * width, { duration: 300 });
+  });
+
+  const handleOnPress = () => {
+    setIsOpen(false);
+  };
 
   const INIT_SIDE_DRAWER_CHAT_DATA: NavbarSideDrawerChatProps[] = [
     {
@@ -54,7 +71,7 @@ export default function NavbarSideDrawer({ isOpen, setIsOpen }: NavbarProps) {
     );
   }
 
-  function NavbarSideDrawerChat({ id, title, createdAt }: NavbarSideDrawerChatProps) {
+  function NavbarSideDrawerChat({ title, createdAt }: NavbarSideDrawerChatProps) {
     return (
       <TouchableOpacity className="w-full flex-row items-center gap-6 px-4">
         <MaterialCommunityIcons name="comment-outline" size={24} color="white" />
@@ -64,7 +81,7 @@ export default function NavbarSideDrawer({ isOpen, setIsOpen }: NavbarProps) {
             {createdAt.toLocaleString('en-US', {
               month: 'short',
               year: 'numeric',
-              dateStyle: 'medium',
+              day: '2-digit',
             })}
           </Text>
         </View>
@@ -72,26 +89,27 @@ export default function NavbarSideDrawer({ isOpen, setIsOpen }: NavbarProps) {
     );
   }
   return (
-    isOpen && (
-      <>
-        <Animated.View
-          className={cn('absolute z-30 h-[100vh] w-full')}
-          entering={FadeIn.duration(300).easing(Easing.ease)}
-          exiting={FadeOut.duration(300).easing(Easing.ease)}>
+    <>
+      {isOpen && (
+        <Animated.View style={[overlayAnimatedStyles]}>
           <TouchableOpacity
             onPress={handleOnPress}
-            className={cn('absolute h-full w-full bg-black/50')}
+            className={cn('absolute top-0 z-30 h-[100vh] w-[100vw] bg-black/50')}
             accessibilityLabel="Press on this area to close the navbar side drawer.">
-            <BlurView intensity={44} tint="dark" className="h-full w-full bg-black/80" />
+            {Platform.OS === 'ios' ? (
+              <BlurView intensity={44} tint="dark" className="h-full w-full bg-black/80" />
+            ) : (
+              <View className="h-[100vh] w-[100vw] bg-black/80" />
+            )}
           </TouchableOpacity>
         </Animated.View>
-        <Animated.View
+      )}
+      <Animated.View style={[drawerAnimatedStyles]}>
+        <View
           className={cn(
-            'absolute z-50 h-[100vh] w-3/4 border-r-[1px]',
-            'justify-between border-zinc-800 bg-nebula-900 pb-8 pt-16'
-          )}
-          entering={SlideInLeft.duration(300).easing(Easing.ease)}
-          exiting={SlideOutLeft.duration(300).easing(Easing.ease)}>
+            'absolute z-50 h-[100vh] w-[75vw] border-r-[1px]',
+            'justify-between gap-4 border-zinc-800 bg-nebula-900 pb-8 pt-16'
+          )}>
           <View>
             <View className="flex-row items-center justify-between p-4">
               <View className="flex-row items-center justify-center gap-2">
@@ -131,8 +149,8 @@ export default function NavbarSideDrawer({ isOpen, setIsOpen }: NavbarProps) {
             <MaterialCommunityIcons name="cog-outline" size={24} color="white" />
             <Text className="text-lg text-white">Settings</Text>
           </TouchableOpacity>
-        </Animated.View>
-      </>
-    )
+        </View>
+      </Animated.View>
+    </>
   );
 }
