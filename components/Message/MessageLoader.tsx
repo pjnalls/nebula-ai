@@ -80,8 +80,9 @@ export default function MessageLoader() {
 
   return (
     <Animated.View style={[cardAnimatedStyles]}>
-      <></>
-      <View className="w-full flex-row gap-4 px-5">
+      <View
+        className="relative mx-auto my-2 flex-row gap-4 px-5"
+        style={[{ maxWidth: 768, width: '100%' }]}>
         <Image
           style={{
             width: 48,
@@ -94,15 +95,15 @@ export default function MessageLoader() {
           alt="A purple and blue glowing electronic orb"
         />
         <View className="flex-col gap-2">
-          <View className="h-16 w-28 flex-row gap-2 rounded-2xl rounded-tl-none border-[1px] border-zinc-700 bg-zinc-900 p-4 py-2">
+          <View className="h-16 w-28 flex-row gap-2 rounded-2xl rounded-tl-none border-[1px] border-zinc-300 bg-zinc-50 dark:border-zinc-700 dark:bg-zinc-900 p-4 py-2">
             <Animated.View style={[dot1AnimatedStyles]}>
-              <View className="h-5 w-5 rounded-full bg-zinc-400 " />
+              <View className="h-5 w-5 rounded-full bg-zinc-400" />
             </Animated.View>
             <Animated.View style={[dot2AnimatedStyles]}>
-              <View className="h-5 w-5 rounded-full bg-zinc-400 " />
+              <View className="h-5 w-5 rounded-full bg-zinc-400" />
             </Animated.View>
             <Animated.View style={[dot3AnimatedStyles]}>
-              <View className="h-5 w-5 rounded-full bg-zinc-400 " />
+              <View className="h-5 w-5 rounded-full bg-zinc-400" />
             </Animated.View>
           </View>
         </View>

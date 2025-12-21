@@ -1,3 +1,4 @@
+import { useColorScheme } from 'nativewind';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { useEffect } from 'react';
 import { Text, View } from 'react-native';
@@ -7,6 +8,7 @@ import { type MessageProps } from 'types';
 import { cn } from 'utils/cn';
 
 export default function Message({ isUser, message, dateSent }: MessageProps) {
+  const { colorScheme } = useColorScheme();
   const opacity = useSharedValue(0);
   const scale = useSharedValue(0.9);
   const translateY = useSharedValue(64);
@@ -29,13 +31,11 @@ export default function Message({ isUser, message, dateSent }: MessageProps) {
       <View
         className="relative mx-auto my-2 flex-row justify-end gap-4 p-4"
         style={[{ maxWidth: 768, width: '100%' }]}>
-        <View
-          className="flex-col gap-2"
-          style={[{ width: 'auto', maxWidth: '80%' }]}>
-          <View className="rounded-2xl rounded-tr-none border-[1px] border-purple-400 bg-purple-600 p-3">
-            <Text className="text-lg text-white">{message}</Text>
+        <View className="flex-col gap-2" style={[{ width: 'auto', maxWidth: '80%' }]}>
+          <View className="rounded-2xl rounded-tr-none border-[1px] border-purple-400 bg-purple-200 p-3 dark:bg-purple-600">
+            <Text className="text-lg text-purple-950 dark:text-white">{message}</Text>
           </View>
-          <Text className="w-full text-right text-zinc-400">
+          <Text className="w-full text-right text-zinc-700 dark:text-zinc-400">
             {dateSent.toLocaleTimeString('en-US', {
               hour: '2-digit',
               minute: '2-digit',
@@ -45,10 +45,14 @@ export default function Message({ isUser, message, dateSent }: MessageProps) {
         </View>
         <View
           className={cn(
-            'h-12 w-12 rounded-full bg-zinc-800',
-            'items-center justify-center border-[1px] border-zinc-700'
+            'h-12 w-12 rounded-full dark:bg-zinc-800 bg-zinc-100',
+            'items-center justify-center border-[1px] dark:border-zinc-700 border-zinc-300'
           )}>
-          <MaterialCommunityIcons size={36} color="white" name="account" />
+          {colorScheme === 'light' ? (
+            <MaterialCommunityIcons size={36} color="black" name="account" />
+          ) : (
+            <MaterialCommunityIcons size={36} color="white" name="account" />
+          )}
         </View>
       </View>
     </Animated.View>
@@ -63,16 +67,16 @@ export default function Message({ isUser, message, dateSent }: MessageProps) {
             height: 48,
             borderRadius: 100,
             borderWidth: 1,
-            borderColor: '#3f3f46',
+            borderColor: colorScheme === 'light' ? '#cfcfd6' : '#3f3f46',
           }}
           source={require('@/assets/icon.png')}
           alt="A purple and blue glowing electronic orb"
         />
         <View className="flex-col gap-2" style={[{ width: 'auto', maxWidth: '80%' }]}>
-          <View className="rounded-2xl rounded-tl-none border-[1px] border-zinc-700 bg-zinc-900 p-3">
-            <Text className="text-lg text-white">{message}</Text>
+          <View className="rounded-2xl rounded-tl-none border-[1px] border-zinc-300 bg-zinc-50 p-3 dark:border-zinc-700 dark:bg-zinc-900">
+            <Text className="text-lg text-black dark:text-white">{message}</Text>
           </View>
-          <Text className="text-zinc-400">
+          <Text className="font-medium text-zinc-700 dark:text-zinc-400">
             {dateSent.toLocaleTimeString('en-US', {
               hour: '2-digit',
               minute: '2-digit',
